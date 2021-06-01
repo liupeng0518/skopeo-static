@@ -1,6 +1,7 @@
 FROM nixos/nix:2.3.11 as builder
 COPY . /usr/skepoe
-RUN cd /usr/skepoe && \
+RUN set -x && \
+    cd /usr/skepoe && \
     nix build -f nix/ && \
 	mkdir -p ./bin && \
 	cp -rfp ./result/bin/* /bin/
