@@ -1,0 +1,20 @@
+name: skopeo Image CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: skopeo
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWD: ${{ secrets.DOCKERHUB_PASSWD }}
+        working-directory: ./
+        run: docker build . -t liupeng0518/skopeo:v1.3.0 -f Dockerfile.static  && docker push liupeng0518/skopeo:v1.3.0
