@@ -17,4 +17,4 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWD: ${{ secrets.DOCKERHUB_PASSWD }}
         working-directory: ./
-        run: docker build . -v ${pwd}:/usr/local/skopeo -t liupeng0518/skopeo:v1.3.0 -f Dockerfile.static  && docker push liupeng0518/skopeo:v1.3.0
+        run: docker build . -t liupeng0518/skopeo:v1.3.0 -f Dockerfile.static  && docker push liupeng0518/skopeo:v1.3.0
