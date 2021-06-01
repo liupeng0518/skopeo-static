@@ -1,2 +1,8 @@
-FROM nixos/nix:2.3.11
-RUN maek static
+FROM nixos/nix:2.3.11 as builder
+RUN mix build -f nix/
+	mkdir -p ./bin
+	cp -rfp ./result/bin/* /bin/
+
+FROM alpine:latest
+
+COPY --from=builder /bin/skopeo .
